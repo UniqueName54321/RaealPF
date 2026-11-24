@@ -5,6 +5,17 @@ set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
 project(RaealPF VERSION 1.0.0)
 
+option(RAEALPF_STANDALONE "Build replay tests without the Geode SDK" OFF)
+if(RAEALPF_STANDALONE)
+    enable_testing()
+    add_library(raealpf-core STATIC src/pathfinder/gdr2.cpp)
+    target_include_directories(raealpf-core PUBLIC src)
+    add_executable(test-gdr2 tests/gdr2.cpp)
+    target_link_libraries(test-gdr2 PRIVATE raealpf-core)
+    add_test(NAME gdr2 COMMAND test-gdr2)
+    return()
+endif()
+
 # Add all source files inside src (recursively)
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
 
@@ -23,4 +34,4 @@ CPMAddPackage("gh:matcool/gd-imgui-cocos#934958c68b1f050a8976d893584fa71368c1df1
 target_link_libraries(${PROJECT_NAME} imgui-cocos)
 
 # Set up dependencies, resources, and link Geode.
-setup_geode_mod(${PROJECT_NAME})
+setup_geode_mod(${PROJECT_NAME} DONT_INSTALL)

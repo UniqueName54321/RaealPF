@@ -9,7 +9,6 @@ using namespace geode::prelude;
 namespace {
     std::function<void()> s_playNormally;
     bool s_pathfind = true;
-    bool s_pathfindError = false;
 
     void closeRaealPF() {
         ImGuiCocos::get().setVisible(false);
@@ -17,6 +16,7 @@ namespace {
     }
 
     void setupRaealPFStyle() {
+        ImGui::GetIO().IniFilename = nullptr;
         auto& style = ImGui::GetStyle();
         style.WindowRounding = 12.f;
         style.FrameRounding = 6.f;
@@ -87,14 +87,7 @@ namespace {
         bool play = false;
         if (s_pathfind) {
             ImGui::TextColored(ImVec4(0.40f, 0.91f, 0.94f, 1.f), "PATHFIND");
-            ImGui::TextWrapped("Pathfinding is not available yet.");
-            if (ImGui::Button("Pathfind##action", ImVec2(140.f, 0.f))) {
-                s_pathfindError = true;
-            }
-            if (s_pathfindError) {
-                ImGui::TextColored(ImVec4(1.f, 0.40f, 0.64f, 1.f),
-                    "Error: pathfinding is not implemented.");
-            }
+            ImGui::TextWrapped("A new pathfinder is in development.");
         } else {
             ImGui::TextColored(ImVec4(0.40f, 0.91f, 0.94f, 1.f), "PLAY");
             play = ImGui::Button("Play##action", ImVec2(140.f, 0.f));
@@ -114,7 +107,6 @@ namespace {
     void showRaealPF(std::function<void()> playNormally) {
         s_playNormally = std::move(playNormally);
         s_pathfind = true;
-        s_pathfindError = false;
         ImGuiCocos::get().setVisible(true);
     }
 }
