@@ -1,6 +1,8 @@
 # RaealPF
 This is where she makes a mod.
 
+On a level's info screen, select the **R** button beside the copy controls to open the RaealPF placeholder popup.
+
 <img src="logo.png" width="150" alt="the mod's logo" />
 
 *Update logo.png to change your mod's icon (please)*
