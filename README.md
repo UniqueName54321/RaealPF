@@ -1,7 +1,7 @@
 # RaealPF
 This is where she makes a mod.
 
-On a level's info screen, select the **R** button beside the copy controls to open the RaealPF placeholder popup.
+Press a level's play button to open the RaealPF placeholder popup. Select **Play** to start the level normally, or **Cancel** to return.
 
 <img src="logo.png" width="150" alt="the mod's logo" />
 

@@ -1,31 +1,43 @@
 #include <Geode/Geode.hpp>
+#include <Geode/modify/EditLevelLayer.hpp>
 #include <Geode/modify/LevelInfoLayer.hpp>
+#include <Geode/modify/LevelPage.hpp>
 
 using namespace geode::prelude;
 
+static void showRaealPF(std::function<void()> playNormally) {
+    createQuickPopup(
+        "RaealPF",
+        "RaealPF UI placeholder.",
+        "Cancel", "Play",
+        [playNormally = std::move(playNormally)](auto, bool play) {
+            if (play) {
+                playNormally();
+            }
+        }
+    );
+}
+
 class $modify(RaealLevelInfoLayer, LevelInfoLayer) {
-    bool init(GJGameLevel* level, bool challenge) {
-        if (!LevelInfoLayer::init(level, challenge)) {
-            return false;
-        }
-
-        if (auto menu = getChildByID("left-side-menu")) {
-            auto sprite = ButtonSprite::create("R");
-            sprite->setScale(0.7f);
-            auto button = CCMenuItemSpriteExtra::create(
-                sprite, this, menu_selector(RaealLevelInfoLayer::onRaealPF)
-            );
-            button->setID("raealpf-button"_spr);
-            menu->addChild(button);
-            menu->updateLayout();
-        } else {
-            log::warn("Could not find LevelInfoLayer left-side-menu");
-        }
-
-        return true;
+    void onPlay(CCObject* sender) {
+        showRaealPF([self = Ref(this), sender = Ref(sender)] {
+            self->LevelInfoLayer::onPlay(sender);
+        });
     }
+};
 
-    void onRaealPF(CCObject*) {
-        FLAlertLayer::create("RaealPF", "RaealPF UI placeholder.", "OK")->show();
+class $modify(RaealLevelPage, LevelPage) {
+    void onPlay(CCObject* sender) {
+        showRaealPF([self = Ref(this), sender = Ref(sender)] {
+            self->LevelPage::onPlay(sender);
+        });
+    }
+};
+
+class $modify(RaealEditLevelLayer, EditLevelLayer) {
+    void onPlay(CCObject* sender) {
+        showRaealPF([self = Ref(this), sender = Ref(sender)] {
+            self->EditLevelLayer::onPlay(sender);
+        });
     }
 };

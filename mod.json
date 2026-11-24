@@ -10,8 +10,5 @@
 	"name": "RaealPF",
 	"version": "v1.0.0",
 	"developer": "Cynthlodia",
-	"description": "a pathfinder mod",
-	"dependencies": {
-		"geode.node-ids": ">=v1.23.3"
-	}
+	"description": "a pathfinder mod"
 }
