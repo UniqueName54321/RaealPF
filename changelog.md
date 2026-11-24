@@ -1,2 +1,2 @@
 # 1.0.0
-- Edit this file to change your mod's changelog.
+- Add a vaporwave-inspired ImGui interface with Play and placeholder Pathfind tabs.

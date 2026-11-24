@@ -1,7 +1,7 @@
 # RaealPF
 This is where she makes a mod.
 
-Press a level's play button to open the RaealPF placeholder popup. Select **Play** to start the level normally, or **Cancel** to return.
+Press a level's play button to open RaealPF. The **Pathfind** tab opens by default; pathfinding is not implemented yet. Switch to **Play** and select **Play** to start the level normally. Close the window with **X** or Escape.
 
 <img src="logo.png" width="150" alt="the mod's logo" />
 
